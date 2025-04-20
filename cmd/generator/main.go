@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/dlsathvik04/bloger/internal/blog"
+)
 
 func main() {
-	fmt.Println("Hello bloger")
+	blogPath := "./blogs/blog1"
+
+	blog := blog.NewBlog(blogPath)
+	fmt.Println(blog.FrontMatter.Author)
+	fmt.Println(blog.Markdown.Html)
 }
