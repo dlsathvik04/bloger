@@ -12,4 +12,6 @@ func main() {
 	blog := blog.NewBlog(blogPath)
 	fmt.Println(blog.FrontMatter.Author)
 	fmt.Println(blog.Markdown.Html)
+
+	blog.Build("./build")
 }
