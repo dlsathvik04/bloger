@@ -26,6 +26,12 @@ Here are some of the features I've implemented:
 3. **Static site generation:** The generator creates a static HTML website.
 4. **Customizable templates:** I can create custom HTML templates for my blog layout.
 
+### Example Image
+
+Here is an Example Image
+
+![img1](./wallpaper_mikael_gustafsson.jpg)
+
 ### Example Code
 
 Here's an example of some Go code:
@@ -38,3 +44,4 @@ import "fmt"
 func main() {
     fmt.Println("Hello, world!")
 }
+```
