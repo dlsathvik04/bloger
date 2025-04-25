@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Blog Index</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 1rem;
+      }
+      a {
+        text-decoration: none;
+        color: #3366cc;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Blog List</h1>
+    <ul id="blog-list">
+      Loading...
+    </ul>
+
+    <script>
+      fetch("blogs.json")
+        .then((res) => res.json())
+        .then((blogs) => {
+          const list = document.getElementById("blog-list");
+          list.innerHTML = ""; // clear "Loading..." text
+
+          blogs.forEach((blog) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = `${blog.name}/index.html`;
+            a.textContent = blog.name;
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+        })
+        .catch((err) => {
+          document.getElementById("blog-list").innerHTML =
+            "Failed to load blog list.";
+          console.error(err);
+        });
+    </script>
+  </body>
+</html>

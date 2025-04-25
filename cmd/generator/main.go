@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
-	blogPath := "./blogs/blog1"
+	blogsPath := "./blogs"
+	buildPath := "./build"
 
-	blog := blog.NewBlog(blogPath)
-	fmt.Println(blog.FrontMatter.Author)
-	fmt.Println(blog.Markdown.Html)
-
-	blog.Build("./build")
+	bloger, err := blog.NewBlogger(blogsPath, buildPath)
+	if err != nil {
+		fmt.Println(err)
+	}
+	bloger.Build()
 }

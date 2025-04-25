@@ -1,17 +1,35 @@
 package utils
 
 import (
+	"fmt"
+	"io"
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 )
 
-func CopyFile(src, dst string) error {
-	input, err := os.ReadFile(src)
+func CopyFile(srcFile, destFile string) error {
+	fmt.Println(srcFile, destFile)
+	src, err := os.Open(srcFile)
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(dst, input, 0644)
+	defer src.Close()
+	dest, err := os.Create(destFile)
+	if err != nil {
+		return err
+	}
+	defer dest.Close()
+	_, err = io.Copy(dest, src)
+	if err != nil {
+		return err
+	}
+	info, err := os.Stat(srcFile)
+	if err != nil {
+		return err
+	}
+	return os.Chmod(destFile, info.Mode())
 }
 
 func ReadAndSplitFile(blogPath string) (string, string, error) {
@@ -34,7 +52,6 @@ func ReadAndSplitFile(blogPath string) (string, string, error) {
 			return content[3:end], content[end+3:], nil
 		}
 	}
-
 	return "", content, nil
 }
 
@@ -46,4 +63,54 @@ func WriteTextToFile(path, content string) error {
 		return err
 	}
 	return nil
+}
+
+func GetSubdirectories(rootPath string) ([]string, error) {
+	var directories []string
+	err := filepath.WalkDir(rootPath, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() && path != rootPath {
+			directories = append(directories, path)
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return directories, nil
+}
+
+func CopyDirectory(src, dest string) error {
+	src, err := filepath.Abs(src)
+	if err != nil {
+		return err
+	}
+	dest, err = filepath.Abs(dest)
+	if err != nil {
+		return err
+	}
+	if _, err := os.Stat(dest); os.IsNotExist(err) {
+		if err := os.MkdirAll(dest, os.ModePerm); err != nil {
+			return err
+		}
+	}
+	return filepath.WalkDir(src, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if path == dest || strings.HasPrefix(path, dest+string(os.PathSeparator)) {
+			return filepath.SkipDir
+		}
+		relPath, err := filepath.Rel(src, path)
+		if err != nil {
+			return err
+		}
+		destPath := filepath.Join(dest, relPath)
+		if d.IsDir() {
+			return os.MkdirAll(destPath, os.ModePerm)
+		}
+		return CopyFile(path, destPath)
+	})
 }

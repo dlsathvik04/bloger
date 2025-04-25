@@ -1,0 +1,117 @@
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+h2,
+h3 {
+  color: #0056b3;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+p,
+ul,
+ol,
+blockquote,
+table {
+  margin-bottom: 1.5em;
+}
+
+ul,
+ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+pre {
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+}
+
+code {
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+blockquote {
+  border-left: 5px solid #ccc;
+  padding: 1em;
+  font-style: italic;
+  color: #555;
+  background-color: #f9f9f9;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 0.8em;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Style for checkboxes (assuming they are rendered as input[type="checkbox"]) */
+input[type="checkbox"] {
+  margin-right: 0.5em;
+  vertical-align: middle; /* Align checkbox with text */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  body {
+    margin: 30px auto;
+    max-width: 800px;
+  }
+
+  h2 {
+    font-size: 2.2em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    max-width: 960px;
+  }
+}
