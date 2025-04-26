@@ -1,0 +1,41 @@
+{{ define "header.html" }}
+<header class="header">
+  <div class="container">
+    <div class="brand">Nambe Bloger</div>
+    <button class="search-button" aria-label="Search">
+      <svg
+        class="search-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <div class="search-wrapper">
+      <input
+        type="text"
+        id="blog-search-input"
+        placeholder="Search blogs..."
+        class="search-input"
+      />
+      <button
+        id="close-search-button"
+        class="close-button"
+        aria-label="Close Search"
+      >
+        ✕
+      </button>
+      <div id="blog-search-results" class="search-results hidden">
+        <ul id="results-list"></ul>
+        <p class="empty-message">No blogs found.</p>
+      </div>
+    </div>
+  </div>
+</header>
+{{ end }}

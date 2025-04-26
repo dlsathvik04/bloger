@@ -1,0 +1,13 @@
+/* blog-card.css */
+.blog-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.blog-card a {
+  color: #007acc;
+  text-decoration: none;
+}

@@ -5,6 +5,27 @@ body {
   color: #333;
   background-color: #f4f4f4;
 }
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  body {
+    margin: 30px auto;
+    max-width: 800px;
+  }
+
+  h2 {
+    font-size: 2.2em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    max-width: 960px;
+  }
+}
 
 h2,
 h3 {
@@ -92,26 +113,4 @@ th {
 input[type="checkbox"] {
   margin-right: 0.5em;
   vertical-align: middle; /* Align checkbox with text */
-}
-
-/* Responsive adjustments */
-@media (min-width: 768px) {
-  body {
-    margin: 30px auto;
-    max-width: 800px;
-  }
-
-  h2 {
-    font-size: 2.2em;
-  }
-
-  h3 {
-    font-size: 1.8em;
-  }
-}
-
-@media (min-width: 992px) {
-  body {
-    max-width: 960px;
-  }
 }

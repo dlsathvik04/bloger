@@ -1,0 +1,9 @@
+{{ define "blog_card.html" }}
+<div class="blog-card">
+  <h2>
+    <a href="{{ .FolderName }}/index.html">{{ .FrontMatterContent.Title }}</a>
+  </h2>
+  <p>This is a blog about {{ .FrontMatterContent.Title }}</p>
+  <a href="{{ .FolderName }}/index.html" class="read-more">Read More</a>
+</div>
+{{ end }}

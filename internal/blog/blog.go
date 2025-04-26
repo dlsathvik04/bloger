@@ -14,6 +14,7 @@ type Blog struct {
 	Path               string
 	FrontMatterContent FrontMatter
 	MarkdownContent    Markdown
+	FolderName         string
 }
 
 func NewBlog(path string) (*Blog, error) {
@@ -23,8 +24,9 @@ func NewBlog(path string) (*Blog, error) {
 	}
 	frontMatter := NewFrontMatter(frontMatterContent)
 	markdown := NewMarkdown(markdownContent)
+	folderName := filepath.Base(path)
 
-	blog := Blog{path, *frontMatter, *markdown}
+	blog := Blog{path, *frontMatter, *markdown, folderName}
 	return &blog, nil
 }
 
