@@ -40,7 +40,7 @@ func (b *Blog) Build(buildPath string) error {
 	if err != nil {
 		return err
 	}
-	templ := template.Must(template.ParseFiles("./templates/blog.html"))
+	templ := template.Must(template.ParseFiles("./templates/blog.html", "./templates/header.html"))
 	fmt.Println("Read the template")
 	err = templ.Execute(htmlWriter, b)
 	if err != nil {

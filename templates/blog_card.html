@@ -1,9 +1,16 @@
 {{ define "blog_card.html" }}
-<div class="blog-card">
-  <h2>
-    <a href="{{ .FolderName }}/index.html">{{ .FrontMatterContent.Title }}</a>
-  </h2>
-  <p>This is a blog about {{ .FrontMatterContent.Title }}</p>
-  <a href="{{ .FolderName }}/index.html" class="read-more">Read More</a>
+<div class="card" style="width: 18rem">
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{{ .FolderName }}/index.html" class="text-decoration-none"
+        >{{ .FrontMatterContent.Title }}</a
+      >
+    </h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Blog Post</h6>
+    <p class="card-text">
+      This is a blog about {{ .FrontMatterContent.Title }}.
+    </p>
+    <a href="{{ .FolderName }}/index.html" class="card-link">Read More</a>
+  </div>
 </div>
 {{ end }}

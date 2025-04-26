@@ -17,7 +17,7 @@ type Bloger struct {
 }
 
 func NewBlogger(blogsDirectory, buildDirectory string) (*Bloger, error) {
-	blogDirs, err := utils.GetSubdirectories("./blogs")
+	blogDirs, err := utils.GetSubdirectories(blogsDirectory)
 	fmt.Println(blogDirs)
 	if err != nil {
 		return nil, err
@@ -27,6 +27,7 @@ func NewBlogger(blogsDirectory, buildDirectory string) (*Bloger, error) {
 	for ind, blogDir := range blogDirs {
 		currentBlog, err := NewBlog(blogDir)
 		if err != nil {
+			fmt.Println(err)
 			return nil, err
 		}
 		blogs[ind] = currentBlog

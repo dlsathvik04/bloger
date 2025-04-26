@@ -1,39 +1,24 @@
 {{ define "header.html" }}
-<header class="header">
-  <div class="container">
-    <div class="brand">Nambe Bloger</div>
-    <button class="search-button" aria-label="Search">
-      <svg
-        class="search-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-    </button>
-    <div class="search-wrapper">
+<header class="bg-light py-2 mb-4 border-bottom">
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="h4 mb-0">Bloger</div>
+    <div class="position-relative" style="width: 300px">
       <input
         type="text"
         id="blog-search-input"
+        class="form-control"
         placeholder="Search blogs..."
-        class="search-input"
+        autocomplete="off"
       />
-      <button
-        id="close-search-button"
-        class="close-button"
-        aria-label="Close Search"
+      <div
+        id="blog-search-results"
+        class="dropdown-menu w-100 mt-1"
+        style="max-height: 300px; overflow-y: auto"
       >
-        ✕
-      </button>
-      <div id="blog-search-results" class="search-results hidden">
-        <ul id="results-list"></ul>
-        <p class="empty-message">No blogs found.</p>
+        <ul id="results-list" class="list-unstyled mb-0"></ul>
+        <p id="empty-message" class="dropdown-item text-muted d-none">
+          No blogs found.
+        </p>
       </div>
     </div>
   </div>

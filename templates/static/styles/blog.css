@@ -1,17 +1,7 @@
 body {
-  font-family: sans-serif;
-  line-height: 1.6;
-  margin: 20px;
-  color: #333;
-  background-color: #f4f4f4;
+  line-height: 1.25;
 }
-/* Responsive adjustments */
 @media (min-width: 768px) {
-  body {
-    margin: 30px auto;
-    max-width: 800px;
-  }
-
   h2 {
     font-size: 2.2em;
   }
@@ -21,18 +11,10 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  body {
-    max-width: 960px;
-  }
-}
-
 h2,
 h3 {
-  color: #0056b3;
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  line-height: 1.2;
+  margin-top: 0.75em;
+  margin-bottom: 0.15em;
 }
 
 p,
@@ -69,7 +51,6 @@ img {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 pre {
   background-color: #282c34;
   color: #abb2bf;
@@ -78,7 +59,6 @@ pre {
   overflow-x: auto;
   margin-bottom: 1.5em;
 }
-
 code {
   font-family: monospace;
   font-size: 0.9em;
@@ -107,10 +87,4 @@ td {
 th {
   background-color: #f0f0f0;
   font-weight: bold;
-}
-
-/* Style for checkboxes (assuming they are rendered as input[type="checkbox"]) */
-input[type="checkbox"] {
-  margin-right: 0.5em;
-  vertical-align: middle; /* Align checkbox with text */
 }
