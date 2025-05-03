@@ -1,5 +1,7 @@
 # Bloger
 
+**Not Yet Ready for basic usage**
+
 ![Blog Image](./bloger.png)
 
 A program for simple blogging.
@@ -20,4 +22,8 @@ Converts Markdown Blogs in a simple folder into an optimized and responsive stat
 - Tags for recommendations and grouping
 - "Series" for grouping blogs as needed with a separate page
 - Configuration using JSON
+
+[IN CONSIDERATION]
+
 - Projects for multiple sites on the same machine
+- default support for monetization (Now you can edit the templates for this)
