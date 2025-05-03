@@ -18,12 +18,10 @@ type Bloger struct {
 
 func NewBlogger(blogsDirectory, buildDirectory string) (*Bloger, error) {
 	blogDirs, err := utils.GetSubdirectories(blogsDirectory)
-	fmt.Println(blogDirs)
 	if err != nil {
 		return nil, err
 	}
 	blogs := make([]*Blog, len(blogDirs))
-	fmt.Println(blogs)
 	for ind, blogDir := range blogDirs {
 		currentBlog, err := NewBlog(blogDir)
 		if err != nil {
@@ -32,7 +30,6 @@ func NewBlogger(blogsDirectory, buildDirectory string) (*Bloger, error) {
 		}
 		blogs[ind] = currentBlog
 	}
-	fmt.Println(blogs)
 	return &Bloger{
 		blogsDirectory, buildDirectory, blogs,
 	}, nil
@@ -41,7 +38,6 @@ func NewBlogger(blogsDirectory, buildDirectory string) (*Bloger, error) {
 func (bloger *Bloger) Build() error {
 	utils.CopyDirectory("templates/static", path.Join(bloger.buildDirectory, "static"))
 	for _, blog := range bloger.Blogs {
-		fmt.Println(blog)
 		err := blog.Build(bloger.buildDirectory)
 		if err != nil {
 			return err
@@ -77,6 +73,7 @@ func (bloger *Bloger) buildJsonDirectory() error {
 		blogEntry := map[string]any{
 			"FolderName":         blog.FolderName,
 			"FrontMatterContent": blog.FrontMatterContent, // Assuming your Blog struct has this field
+			"CoverImage":         blog.CoverImage,
 		}
 		blogList = append(blogList, blogEntry)
 	}
@@ -112,6 +109,5 @@ func (bloger *Bloger) buildBlogIndexHTML() error {
 	if err != nil {
 		return fmt.Errorf("error executing index template: %w", err)
 	}
-	fmt.Println("Generated blog index HTML at:", outputPath)
 	return nil
 }

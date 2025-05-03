@@ -1,10 +1,10 @@
 package blog
 
 import (
-	"fmt"
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"text/template"
 
 	"github.com/dlsathvik04/bloger/internal/utils"
@@ -15,6 +15,16 @@ type Blog struct {
 	FrontMatterContent FrontMatter
 	MarkdownContent    Markdown
 	FolderName         string
+	CoverImage         string
+}
+
+func getFirstImagePath(htmlContent string) string {
+	re := regexp.MustCompile(`<img\s+[^>]*?src\s*=\s*["']([^"']+)["'][^>]*?>`)
+	match := re.FindStringSubmatch(htmlContent)
+	if len(match) > 1 {
+		return match[1]
+	}
+	return ""
 }
 
 func NewBlog(path string) (*Blog, error) {
@@ -25,8 +35,8 @@ func NewBlog(path string) (*Blog, error) {
 	frontMatter := NewFrontMatter(frontMatterContent)
 	markdown := NewMarkdown(markdownContent)
 	folderName := filepath.Base(path)
-
-	blog := Blog{path, *frontMatter, *markdown, folderName}
+	coverImage := getFirstImagePath(markdown.Html)
+	blog := Blog{path, *frontMatter, *markdown, folderName, coverImage}
 	return &blog, nil
 }
 
@@ -41,7 +51,6 @@ func (b *Blog) Build(buildPath string) error {
 		return err
 	}
 	templ := template.Must(template.ParseFiles("./templates/blog.html", "./templates/header.html"))
-	fmt.Println("Read the template")
 	err = templ.Execute(htmlWriter, b)
 	if err != nil {
 		return err
@@ -51,14 +60,11 @@ func (b *Blog) Build(buildPath string) error {
 }
 
 func copyNonMdFiles(src, dest string) error {
-	fmt.Println(src)
-	fmt.Println(dest)
 	return filepath.Walk(src, func(filePath string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		destPath := path.Join(dest, filePath[len(src):])
-		fmt.Println(destPath)
 		if !info.IsDir() && info.Name() != "index.md" {
 			destDir := path.Dir(destPath)
 			if _, err := os.Stat(destDir); os.IsNotExist(err) {

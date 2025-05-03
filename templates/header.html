@@ -1,26 +1,63 @@
 {{ define "header.html" }}
-<header class="bg-light py-2 mb-4 border-bottom">
+<header class="py-2 mb-4 border-bottom">
   <div class="container d-flex align-items-center justify-content-between">
-    <div class="h4 mb-0">Bloger</div>
-    <div class="position-relative" style="width: 300px">
-      <input
-        type="text"
-        id="blog-search-input"
-        class="form-control"
-        placeholder="Search blogs..."
-        autocomplete="off"
-      />
-      <div
-        id="blog-search-results"
-        class="dropdown-menu w-100 mt-1"
-        style="max-height: 300px; overflow-y: auto"
-      >
-        <ul id="results-list" class="list-unstyled mb-0"></ul>
-        <p id="empty-message" class="dropdown-item text-muted d-none">
-          No blogs found.
-        </p>
+    <a href="/"> <div class="h4 mb-0">Bloger</div> </a>
+    <div class="d-flex align-items-center">
+      <div class="position-relative me-3" style="width: 300px">
+        <input
+          type="text"
+          id="blog-search-input"
+          class="form-control form-control-dark"
+          placeholder="Search blogs..."
+          autocomplete="off"
+          aria-label="Search"
+        />
+        <div
+          id="blog-search-results"
+          class="dropdown-menu dropdown-menu-dark w-100 mt-1"
+          style="max-height: 300px; overflow-y: auto"
+        >
+          <ul id="results-list" class="list-unstyled mb-0"></ul>
+          <p id="empty-message" class="dropdown-item text-muted d-none">
+            No blogs found.
+          </p>
+        </div>
+      </div>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="theme-toggle"
+          checked
+        />
+        <label class="form-check-label text-light" for="theme-toggle"
+          >Dark Mode</label
+        >
       </div>
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("theme-toggle");
+    const htmlElement = document.documentElement;
+
+    // Set dark mode by default
+    htmlElement.setAttribute("data-bs-theme", "dark");
+    localStorage.setItem("theme", "dark");
+    themeToggle.checked = true; // Ensure the toggle reflects the default
+
+    themeToggle.addEventListener("change", function () {
+      if (this.checked) {
+        htmlElement.setAttribute("data-bs-theme", "dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        htmlElement.removeAttribute("data-bs-theme");
+        localStorage.setItem("theme", "light");
+      }
+    });
+  });
+</script>
 {{ end }}

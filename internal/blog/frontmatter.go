@@ -7,9 +7,10 @@ import (
 )
 
 type FrontMatter struct {
-	Title  string `yaml:"title"`
-	Date   string `yaml:"date"`
-	Author string `yaml:"author"`
+	Title       string `yaml:"title"`
+	Date        string `yaml:"date"`
+	Author      string `yaml:"author"`
+	Description string `yaml:"description"`
 }
 
 func NewFrontMatter(content string) *FrontMatter {

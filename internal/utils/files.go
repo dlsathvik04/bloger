@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"io"
 	"os"
 	"path"
@@ -10,7 +9,6 @@ import (
 )
 
 func CopyFile(srcFile, destFile string) error {
-	fmt.Println(srcFile, destFile)
 	src, err := os.Open(srcFile)
 	if err != nil {
 		return err
