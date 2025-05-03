@@ -10,7 +10,6 @@ Converts Markdown Blogs in a simple folder into an optimized and responsive stat
 ## Features
 
 - Easy Markdown to HTML Conversion
-- Easy and Versatile Configuration
 - Simple and fully configurable website template
 - Built in Search
 - Built in Source code highlighting using highlight.js
@@ -18,6 +17,7 @@ Converts Markdown Blogs in a simple folder into an optimized and responsive stat
 
 [TO BE IMPLEMENTED]
 
+- Easy and Versatile Configuration
 - Image Compression and Lazy Loading for better loading times
 - Tags for recommendations and grouping
 - "Series" for grouping blogs as needed with a separate page
